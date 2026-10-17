@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "role": "Référence des paramètres config.toml volontairement choisis pour le Workflow Codex.",
+  "application_automatique": false,
+  "parametres": {
+    "model": "gpt-6.1-sol",
+    "model_reasoning_effort": "medium",
+    "plan_mode_reasoning_effort": "medium",
+    "review_model": "gpt-6.1-sol",
+    "agents.default_subagent_model": "gpt-6.1-sol",
+    "agents.default_subagent_reasoning_effort": "low",
+    "agents.max_concurrent_threads_per_session": 3,
+    "approval_policy": "on-request",
+    "sandbox_mode": "workspace-write",
+    "approvals_reviewer": "auto_review",
+    "sandbox_workspace_write.network_access": true,
+    "personality": "pragmatic",
+    "project_doc_fallback_filenames": [
+      "PROJECT_CONTEXT.md"
+    ]
+  },
+  "contraintes_execution": {
+    "review_reasoning_effort": "high",
+    "review_reasoning_effort_application": "Forcer par review-native-codex ; ne pas inventer de clé config.toml dédiée tant que Codex n'en expose pas."
+  },
+  "requalification": {
+    "modeles": "Volatils : revalider lors d'une nouvelle génération ou d'un changement de disponibilité Codex.",
+    "garde_fous": "Stables jusqu'à invalidation par un changement de mécanisme Codex ou un test réel."
+  },
+  "non_geres_par_le_workflow": [
+    "service_tier",
+    "hooks.state",
+    "notify",
+    "shell_environment_policy",
+    "projects",
+    "mcp_servers",
+    "plugins",
+    "marketplaces",
+    "memories",
+    "desktop"
+  ],
+  "regle": "Ne jamais remplacer config.toml avec ce fichier. Comparer ou appliquer manuellement uniquement les paramètres explicitement listés.",
+  "portee_edition_publique": "Manifeste documentaire historique, pas un réglage complet à installer. Les états qualifiés/observés se rapportent aux versions et à la machine des campagnes historiques ; aucune qualification actuelle implicite."
+}

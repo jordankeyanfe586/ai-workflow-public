@@ -1,0 +1,137 @@
+#!/bin/sh
+# Lanceur fermé pour la Review native Codex.
+#
+# Interface publique autorisée :
+#   review-native-codex --uncommitted
+#   review-native-codex --base <branche>
+#   review-native-codex --commit <sha>
+#   review-native-codex --help
+#
+# Aucun autre argument, prompt, profil ou override CLI n'est accepté.
+
+set -u
+
+# Résoudre une fois le CLI installé via le PATH utilisateur, sans chemin fournisseur.
+CODEX_BIN=$(command -v codex) || {
+    printf 'STOP: CLI Codex introuvable dans le PATH.\n' >&2
+    exit 69
+}
+GIT_BIN="/usr/bin/git"
+MKTEMP_BIN="/usr/bin/mktemp"
+TAIL_BIN="/usr/bin/tail"
+CAT_BIN="/bin/cat"
+RM_BIN="/bin/rm"
+
+usage() {
+    cat <<'EOF'
+Usage:
+  review-native-codex --uncommitted
+  review-native-codex --base <branche>
+  review-native-codex --commit <sha>
+  review-native-codex --help
+EOF
+}
+
+die_usage() {
+    printf '%s\n' "$1" >&2
+    usage >&2
+    exit 64
+}
+
+[ -x "$CODEX_BIN" ] || {
+    printf 'STOP: binaire Codex attendu introuvable ou non exécutable: %s\n' "$CODEX_BIN" >&2
+    exit 69
+}
+
+[ -x "$GIT_BIN" ] || {
+    printf 'STOP: /usr/bin/git est introuvable ou non exécutable.\n' >&2
+    exit 69
+}
+
+case "${1-}" in
+    --help|-h)
+        [ "$#" -eq 1 ] || die_usage "Aucun argument ne peut accompagner --help."
+        usage
+        exit 0
+        ;;
+
+    --uncommitted)
+        [ "$#" -eq 1 ] || die_usage "--uncommitted n'accepte aucun argument supplémentaire."
+        set -- --uncommitted
+        ;;
+
+    --base)
+        [ "$#" -eq 2 ] || die_usage "--base exige exactement une branche."
+        base=$2
+        case "$base" in
+            ""|-*) die_usage "Branche invalide." ;;
+        esac
+        "$GIT_BIN" check-ref-format --branch "$base" >/dev/null 2>&1 \
+            || die_usage "Branche Git invalide: $base"
+        set -- --base "$base"
+        ;;
+
+    --commit)
+        [ "$#" -eq 2 ] || die_usage "--commit exige exactement un SHA hexadécimal."
+        commit=$2
+        case "$commit" in
+            *[!0-9A-Fa-f]*|"") die_usage "SHA de commit invalide: $commit" ;;
+        esac
+        [ "${#commit}" -ge 7 ] && [ "${#commit}" -le 64 ] \
+            || die_usage "Le SHA doit contenir entre 7 et 64 caractères hexadécimaux."
+        set -- --commit "$commit"
+        ;;
+
+    "")
+        die_usage "La cible de Review doit être explicite."
+        ;;
+
+    *)
+        die_usage "Argument non autorisé: ${1-}"
+        ;;
+esac
+
+tmpdir=$("$MKTEMP_BIN" -d "${TMPDIR:-/tmp}/review-native-codex.XXXXXX") || {
+    printf 'STOP: impossible de créer le répertoire temporaire.\n' >&2
+    exit 70
+}
+
+cleanup() {
+    "$RM_BIN" -rf "$tmpdir"
+}
+trap cleanup EXIT HUP INT TERM
+
+stdout_file="$tmpdir/stdout"
+stderr_file="$tmpdir/stderr"
+
+# Conserver les règles et la configuration utilisateur, dont review_model.
+# La Review reste en lecture seule, sans élévation automatique de ses commandes.
+"$CODEX_BIN" exec \
+    --sandbox read-only \
+    --config 'approval_policy="never"' \
+    --config 'model_reasoning_effort="high"' \
+    review \
+    "$@" \
+    >"$stdout_file" 2>"$stderr_file"
+rc=$?
+
+if [ "$rc" -ne 0 ]; then
+    printf 'STOP: Review Codex échouée (code %s).\n' "$rc" >&2
+    if [ -s "$stderr_file" ]; then
+        printf '%s\n' '--- stderr (40 dernières lignes) ---' >&2
+        "$TAIL_BIN" -n 40 "$stderr_file" >&2
+    fi
+    exit "$rc"
+fi
+
+if [ ! -s "$stdout_file" ]; then
+    printf 'STOP: Review Codex terminée sans sortie exploitable.\n' >&2
+    if [ -s "$stderr_file" ]; then
+        printf '%s\n' '--- stderr (40 dernières lignes) ---' >&2
+        "$TAIL_BIN" -n 40 "$stderr_file" >&2
+    fi
+    exit 70
+fi
+
+"$CAT_BIN" "$stdout_file"
+exit 0

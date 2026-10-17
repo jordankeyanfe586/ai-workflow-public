@@ -1,0 +1,26 @@
+# Protections natives ciblées ; décisions fonctionnelles dans AI_WORKFLOW.md.
+# Couverture limitée aux préfixes qualifiés dans tests/codex/REQUALIFICATION.md.
+
+prefix_rule(
+    pattern = ["git", "reset", "--hard"],
+    decision = "forbidden",
+    justification = "git reset --hard peut supprimer des modifications locales. Utiliser une méthode non destructive ou demander explicitement une autre stratégie.",
+)
+
+prefix_rule(
+    pattern = ["git", "clean", ["-f", "-fd", "-df", "-fx", "-fdx"]],
+    decision = "forbidden",
+    justification = "git clean forcé peut supprimer définitivement des fichiers non suivis. Inspecter d'abord les fichiers concernés.",
+)
+
+prefix_rule(
+    pattern = ["git", "branch", "-D"],
+    decision = "forbidden",
+    justification = "git branch -D force la suppression d'une branche. Utiliser une suppression sûre après vérification.",
+)
+
+prefix_rule(
+    pattern = ["git", "worktree", "remove", ["-f", "--force"]],
+    decision = "forbidden",
+    justification = "La suppression forcée d'un worktree peut détruire des modifications locales.",
+)

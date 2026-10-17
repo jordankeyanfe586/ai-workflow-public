@@ -1,0 +1,685 @@
+{
+  "source": "Private personal repository; no Git objects or history imported",
+  "categories": {
+    "A": "Included, byte-identical to selected original",
+    "B": "Included, adapted or newly authored for public edition",
+    "C": "Excluded, not present in public edition"
+  },
+  "files": [
+    {
+      "path": ".gitignore",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Strengthened exclusions for secrets, local settings, session data, exports and caches; retained example environment files",
+      "source_lines_replaced_or_removed": 3,
+      "public_lines_added_or_replaced": 29
+    },
+    {
+      "path": "AI_WORKFLOW.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "445a73c60c38a55fb9d72745129499183f7672402d12251128574f8b185dfbe8"
+    },
+    {
+      "path": "CAP_WORKFLOW_IA.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Historical-scope banner, public context metadata and exclusion of private Grok distribution",
+      "source_lines_replaced_or_removed": 3,
+      "public_lines_added_or_replaced": 5
+    },
+    {
+      "path": "LICENSE",
+      "included": true,
+      "category": "B",
+      "origin": "created for public edition",
+      "reason": "New public-edition document: LICENSE"
+    },
+    {
+      "path": "PLAN_MAITRE.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Rewritten public preparation plan; no imported private roadmap or qualification claim",
+      "source_lines_replaced_or_removed": 418,
+      "public_lines_added_or_replaced": 17
+    },
+    {
+      "path": "PROJECT_CONTEXT.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "New independent-public-edition context, separation from private installation and MIT decision",
+      "source_lines_replaced_or_removed": 76,
+      "public_lines_added_or_replaced": 6
+    },
+    {
+      "path": "README.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Rewritten as English public overview, manual installation, adapter limitations, AI attribution and MIT scope",
+      "source_lines_replaced_or_removed": 22,
+      "public_lines_added_or_replaced": 92
+    },
+    {
+      "path": "adaptateurs/antigravity/INVENTAIRE.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Historical installation/qualification scope marked; local references anonymized where present: adaptateurs/antigravity/INVENTAIRE.md",
+      "source_lines_replaced_or_removed": 0,
+      "public_lines_added_or_replaced": 2
+    },
+    {
+      "path": "adaptateurs/antigravity/configuration-workflow.json",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Added historical scope; descriptive secrets_proteges changed from boolean to partial-scope text; explicit glob/terminal limitations; runtime permissions unchanged",
+      "source_lines_replaced_or_removed": 4,
+      "public_lines_added_or_replaced": 6
+    },
+    {
+      "path": "adaptateurs/antigravity/fichiers-installation/.gemini/GEMINI.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "6e0b8a237559ba6f56425fd0bec2967f2b056e1352ffc29646392412964b8ae2"
+    },
+    {
+      "path": "adaptateurs/antigravity/fichiers-installation/.gemini/antigravity-cli/skills/cloturer-branche/SKILL.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "464665dd1823f904786631856d68b243f5212477c4c17d8a2fe5218b7ac41f8c"
+    },
+    {
+      "path": "adaptateurs/antigravity/fichiers-installation/.gemini/antigravity-cli/skills/preparer-commit/SKILL.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "348b1fed965e22bdce7ebb77677cb0c6d996206b973ad1b0b66dae0fb4920779"
+    },
+    {
+      "path": "adaptateurs/antigravity/fichiers-installation/.gemini/antigravity-cli/statusline.sh",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Anonymized palette comment only; executable behavior unchanged",
+      "source_lines_replaced_or_removed": 1,
+      "public_lines_added_or_replaced": 1
+    },
+    {
+      "path": "adaptateurs/antigravity/permissions.json",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "3a52c15ff90c2db67c77a6cf83b101f5db0c89995577f2c6c3ec8ac6bf02dd97"
+    },
+    {
+      "path": "adaptateurs/claude/INVENTAIRE.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Historical installation/qualification scope marked; local references anonymized where present: adaptateurs/claude/INVENTAIRE.md",
+      "source_lines_replaced_or_removed": 0,
+      "public_lines_added_or_replaced": 2
+    },
+    {
+      "path": "adaptateurs/claude/configuration-workflow.json",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Added historical scope and descriptive partial secret-protection qualification; fragment_settings unchanged",
+      "source_lines_replaced_or_removed": 2,
+      "public_lines_added_or_replaced": 3
+    },
+    {
+      "path": "adaptateurs/claude/fichiers-installation/.claude/CLAUDE.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "69966e76e8ebe75f691708d8f8f37a76b1b3190c9519c77af5ece1a14795b0b0"
+    },
+    {
+      "path": "adaptateurs/claude/fichiers-installation/.claude/agents/ai-reviewer.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "ac335e6f794731c032b54e0e55ffe77dd859c6044c518e30a29fb7220b286402"
+    },
+    {
+      "path": "adaptateurs/claude/fichiers-installation/.claude/hooks/barriere-git.py",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "53e4bc8e884550af26af7ec139921338364b541f6248afd5854e982cb32d754d"
+    },
+    {
+      "path": "adaptateurs/claude/fichiers-installation/.claude/hooks/notification.py",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "eb343b2e0e7a972753554524cb134ea060ee526ee681d750ccdea8c655a5494a"
+    },
+    {
+      "path": "adaptateurs/claude/fichiers-installation/.claude/skills/cloturer-branche/SKILL.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "7b5c244e636760ed55c04ec64cb50a81d6d75183714cdaca2497ad208038a8f2"
+    },
+    {
+      "path": "adaptateurs/claude/fichiers-installation/.claude/skills/preparer-commit/SKILL.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "0074d5ac9ba62fecb20cce1235478870f1fc455e03d19c871e15124c5e539bdf"
+    },
+    {
+      "path": "adaptateurs/claude/fichiers-installation/.claude/statusline-command.sh",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "bee76f4b4b0cd650b5fce2cb9501018172277a2fec40bd37abda90112779240f"
+    },
+    {
+      "path": "adaptateurs/codex/INVENTAIRE.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Historical installation/qualification scope marked; local references anonymized where present: adaptateurs/codex/INVENTAIRE.md",
+      "source_lines_replaced_or_removed": 0,
+      "public_lines_added_or_replaced": 2
+    },
+    {
+      "path": "adaptateurs/codex/configuration-workflow.json",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Added historical scope metadata only; runtime parameters and permissions unchanged",
+      "source_lines_replaced_or_removed": 1,
+      "public_lines_added_or_replaced": 2
+    },
+    {
+      "path": "adaptateurs/codex/fichiers-installation/.codex/AGENTS.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "9966a33219b73da58699c0aad02baea0e2e5541a6f2dfd39bd4f8a61ba1cb110"
+    },
+    {
+      "path": "adaptateurs/codex/fichiers-installation/.codex/bin/review-native-codex",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "a92593c2c4ea4ba1f716d513d2918a3060adffe0458f0ccbd1bf322a69ad16fb"
+    },
+    {
+      "path": "adaptateurs/codex/fichiers-installation/.codex/hooks/notification.py",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "bfb81e3b3cf595d5e83fb2adddb4e5e5e4734fbface3cbe3ce3b1e0962aea42d"
+    },
+    {
+      "path": "adaptateurs/codex/fichiers-installation/.codex/hooks.json",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "cde0a0985acb4968baf70a12920a8dfc62f26b1fb83b76663b41bfc1b84acbdf"
+    },
+    {
+      "path": "adaptateurs/codex/fichiers-installation/.codex/rules/default.rules",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "0eff2a1a579a8a64dfb07090e14defc3c9c0993de0fd86ec748217ffda6b2bf1"
+    },
+    {
+      "path": "adaptateurs/codex/fichiers-installation/.codex/skills/cloturer-branche/SKILL.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "65c61fc6f29bd3555e747b48491f6d0b2a8e9eb3ffd95c82b053cd8ba7d00bdd"
+    },
+    {
+      "path": "adaptateurs/codex/fichiers-installation/.codex/skills/preparer-commit/SKILL.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "6110bb0d4cd2b82c5a3ecc3db2bfc09fa870eb39b4ccedb742493cee12573e13"
+    },
+    {
+      "path": "adaptateurs/codex/fichiers-installation/.local/bin/review-native-codex",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "a92593c2c4ea4ba1f716d513d2918a3060adffe0458f0ccbd1bf322a69ad16fb",
+      "symlink_target": "../../.codex/bin/review-native-codex"
+    },
+    {
+      "path": "architecture/AUTORISATIONS.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Replaced illustrative schema host with .invalid and clarified non-published-schema status",
+      "source_lines_replaced_or_removed": 1,
+      "public_lines_added_or_replaced": 3
+    },
+    {
+      "path": "architecture/PORTABLE.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Anonymized local references and clarified adapter-specific force-push policy without changing permissions",
+      "source_lines_replaced_or_removed": 1,
+      "public_lines_added_or_replaced": 1
+    },
+    {
+      "path": "architecture/REVIEW_ET_PREUVES.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Anonymized private references; illustrative schema host changed to .invalid with explanation",
+      "source_lines_replaced_or_removed": 1,
+      "public_lines_added_or_replaced": 3
+    },
+    {
+      "path": "documentation/IDENTITE_GITHUB.md",
+      "included": true,
+      "category": "B",
+      "origin": "created for public edition",
+      "reason": "New public-edition document: documentation/IDENTITE_GITHUB.md"
+    },
+    {
+      "path": "documentation/INSTALLATION.md",
+      "included": true,
+      "category": "B",
+      "origin": "created for public edition",
+      "reason": "New public-edition document: documentation/INSTALLATION.md"
+    },
+    {
+      "path": "documentation/LICENCE_ET_PROVENANCE.md",
+      "included": true,
+      "category": "B",
+      "origin": "created for public edition",
+      "reason": "New public-edition document: documentation/LICENCE_ET_PROVENANCE.md"
+    },
+    {
+      "path": "documentation/SELECTION_PUBLIQUE.json",
+      "included": true,
+      "category": "B",
+      "origin": "created for public edition",
+      "reason": "Rebuilt exact included/excluded inventory, category definitions, provenance and unchanged-file digests; self-digest omitted"
+    },
+    {
+      "path": "documentation/VALIDATION_PUBLIQUE.md",
+      "included": true,
+      "category": "B",
+      "origin": "created for public edition",
+      "reason": "New public-edition document: documentation/VALIDATION_PUBLIQUE.md"
+    },
+    {
+      "path": "documentation/antigravity/README.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Historical banner and correction of partial native secret-path protection versus glob/terminal gaps",
+      "source_lines_replaced_or_removed": 1,
+      "public_lines_added_or_replaced": 9
+    },
+    {
+      "path": "documentation/claude/CONFIGURATION.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Historical installation/qualification scope marked; local references anonymized where present: documentation/claude/CONFIGURATION.md",
+      "source_lines_replaced_or_removed": 0,
+      "public_lines_added_or_replaced": 2
+    },
+    {
+      "path": "documentation/claude/MECANISMES.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Historical banner, accurate heredoc boundary and non-distributed Grok archive clarification",
+      "source_lines_replaced_or_removed": 2,
+      "public_lines_added_or_replaced": 9
+    },
+    {
+      "path": "documentation/claude/README.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Historical installation/qualification scope marked; local references anonymized where present: documentation/claude/README.md",
+      "source_lines_replaced_or_removed": 0,
+      "public_lines_added_or_replaced": 2
+    },
+    {
+      "path": "documentation/codex/CONFIGURATION.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Historical installation/qualification scope marked; local references anonymized where present: documentation/codex/CONFIGURATION.md",
+      "source_lines_replaced_or_removed": 0,
+      "public_lines_added_or_replaced": 2
+    },
+    {
+      "path": "documentation/codex/MECANISMES.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Historical installation/qualification scope marked; local references anonymized where present: documentation/codex/MECANISMES.md",
+      "source_lines_replaced_or_removed": 0,
+      "public_lines_added_or_replaced": 5
+    },
+    {
+      "path": "documentation/codex/README.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Historical installation/qualification scope marked; local references anonymized where present: documentation/codex/README.md",
+      "source_lines_replaced_or_removed": 0,
+      "public_lines_added_or_replaced": 2
+    },
+    {
+      "path": "examples/gestion-personnes/README.md",
+      "included": true,
+      "category": "B",
+      "origin": "created for public edition",
+      "reason": "New public-edition document: examples/gestion-personnes/README.md"
+    },
+    {
+      "path": "modeles-projet/INSTRUCTIONS_CHATGPT_MODEL.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "4584d9c72322b52287e11e4b97a539d5532b3a7ad9819c68d84830b24d0c72ff"
+    },
+    {
+      "path": "modeles-projet/PROJECT_CONTEXT_MODEL.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "7377e49f7a42985ba23dcc30bc2ca3d9961eca90b2a23684fb0b2db92f8857ab"
+    },
+    {
+      "path": "modeles-projet/claude/CLAUDE.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "bdcc4e829d2e808933e39e64f88a83e2f17b6c7faf5c3d294abbb66db7761de1"
+    },
+    {
+      "path": "modeles-projet/claude/RULE.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "ff53a2832c5d0fa12fff41d069d63cd415dacdc5f391b62d1ec87e4429efb175"
+    },
+    {
+      "path": "outils/empreinte-git.py",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "7b0e8377e3c7d4197fb589b7b95f1c2bcc89bf235416418c55c8558861e85b35"
+    },
+    {
+      "path": "procedures/CLOTURER_BRANCHE.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "392157fe5d5f7db12348c0f885a361cfa7a627a661a511ea7f4037f83835b666"
+    },
+    {
+      "path": "procedures/PREPARER_COMMIT.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "634525c2271a779db30d666c58171b70696589b98c135ba1f5b4e455034f3a64"
+    },
+    {
+      "path": "tests/GUIDE_REQUALIFICATION.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Historical report scope marked and local references/session IDs anonymized",
+      "source_lines_replaced_or_removed": 0,
+      "public_lines_added_or_replaced": 2
+    },
+    {
+      "path": "tests/TESTS_UNIVERSELS.md",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "7d4087a58a230234c53f6d1529b8aaa1a05fde5ffd86949065c862a11727a04f"
+    },
+    {
+      "path": "tests/antigravity/REQUALIFICATION.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Historical report scope marked and local references/session IDs anonymized",
+      "source_lines_replaced_or_removed": 0,
+      "public_lines_added_or_replaced": 2
+    },
+    {
+      "path": "tests/claude/REQUALIFICATION.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Historical report scope marked and local references/session IDs anonymized",
+      "source_lines_replaced_or_removed": 1,
+      "public_lines_added_or_replaced": 3
+    },
+    {
+      "path": "tests/claude/cas-barriere-git.json",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "4c7c811ec5b8b53c5b05d11878e1b0716c1dfe775ad1f861ce3d480c090ebe3e"
+    },
+    {
+      "path": "tests/claude/cas-permissions.json",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "20f51a569b223f4ca21214fe326d0e57f79eb6951c7d3e314b477a335de07d73"
+    },
+    {
+      "path": "tests/claude/outils/banc_permissions.py",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "1820d4259ae200fae48ff761e95f76b22af8ad21b05ccf2fcd611dfd3912b088"
+    },
+    {
+      "path": "tests/claude/outils/commun_banc.py",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "d7e9498bd521afdd25ee45fe85274480e72c7f92675d357e47cbbb6d68b56c0c"
+    },
+    {
+      "path": "tests/claude/outils/sonde_comportement.py",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "fd08f20a9eec30e7b505fd8415be6b7bb855fab5b474003e07d6816cc30be088"
+    },
+    {
+      "path": "tests/claude/outils/test_bancs.py",
+      "included": true,
+      "category": "A",
+      "origin": "private tracked source",
+      "reason": "Byte-identical selected source",
+      "sha256": "3a458d59844152dc0b33f78ef3e25efb050c2cf3fb493aaa24ef409b8ff4ab4f"
+    },
+    {
+      "path": "tests/claude/outils/test_barriere_git.py",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Test description corrected to include deny; execution logic unchanged",
+      "source_lines_replaced_or_removed": 3,
+      "public_lines_added_or_replaced": 3
+    },
+    {
+      "path": "tests/codex/REQUALIFICATION.md",
+      "included": true,
+      "category": "B",
+      "origin": "private tracked source",
+      "reason": "Historical report scope marked and local references/session IDs anonymized",
+      "source_lines_replaced_or_removed": 23,
+      "public_lines_added_or_replaced": 25
+    },
+    {
+      "path": "tests/public/test_public.py",
+      "included": true,
+      "category": "B",
+      "origin": "created for public edition",
+      "reason": "New public-edition offline validation suite with synthetic fixtures"
+    },
+    {
+      "path": "adaptateurs/grok/INVENTAIRE.md",
+      "included": false,
+      "category": "C",
+      "origin": "private tracked source",
+      "reason": "Inactive Grok adapter/archive excluded from public distribution"
+    },
+    {
+      "path": "adaptateurs/grok/configuration-workflow.json",
+      "included": false,
+      "category": "C",
+      "origin": "private tracked source",
+      "reason": "Inactive Grok adapter/archive excluded from public distribution"
+    },
+    {
+      "path": "adaptateurs/grok/fichiers-installation/.grok/AGENTS.md",
+      "included": false,
+      "category": "C",
+      "origin": "private tracked source",
+      "reason": "Inactive Grok adapter/archive excluded from public distribution"
+    },
+    {
+      "path": "adaptateurs/grok/fichiers-installation/.grok/hooks/notification.json",
+      "included": false,
+      "category": "C",
+      "origin": "private tracked source",
+      "reason": "Inactive Grok adapter/archive excluded from public distribution"
+    },
+    {
+      "path": "adaptateurs/grok/fichiers-installation/.grok/hooks/notification.py",
+      "included": false,
+      "category": "C",
+      "origin": "private tracked source",
+      "reason": "Inactive Grok adapter/archive excluded from public distribution"
+    },
+    {
+      "path": "adaptateurs/grok/fichiers-installation/.grok/requirements.toml",
+      "included": false,
+      "category": "C",
+      "origin": "private tracked source",
+      "reason": "Inactive Grok adapter/archive excluded from public distribution"
+    },
+    {
+      "path": "adaptateurs/grok/fichiers-installation/.grok/skills/cloturer-branche/SKILL.md",
+      "included": false,
+      "category": "C",
+      "origin": "private tracked source",
+      "reason": "Inactive Grok adapter/archive excluded from public distribution"
+    },
+    {
+      "path": "adaptateurs/grok/fichiers-installation/.grok/skills/preparer-commit/SKILL.md",
+      "included": false,
+      "category": "C",
+      "origin": "private tracked source",
+      "reason": "Inactive Grok adapter/archive excluded from public distribution"
+    },
+    {
+      "path": "adaptateurs/grok/fichiers-installation/.grok/statusline.sh",
+      "included": false,
+      "category": "C",
+      "origin": "private tracked source",
+      "reason": "Inactive Grok adapter/archive excluded from public distribution"
+    },
+    {
+      "path": "documentation/grok/CONFIGURATION.md",
+      "included": false,
+      "category": "C",
+      "origin": "private tracked source",
+      "reason": "Inactive Grok adapter/archive excluded from public distribution"
+    },
+    {
+      "path": "documentation/grok/MECANISMES.md",
+      "included": false,
+      "category": "C",
+      "origin": "private tracked source",
+      "reason": "Inactive Grok adapter/archive excluded from public distribution"
+    },
+    {
+      "path": "documentation/grok/README.md",
+      "included": false,
+      "category": "C",
+      "origin": "private tracked source",
+      "reason": "Inactive Grok adapter/archive excluded from public distribution"
+    },
+    {
+      "path": "tests/grok/REQUALIFICATION.md",
+      "included": false,
+      "category": "C",
+      "origin": "private tracked source",
+      "reason": "Inactive Grok adapter/archive excluded from public distribution"
+    },
+    {
+      "path": "documentation/REVUE_PUBLIQUE.md",
+      "included": true,
+      "category": "B",
+      "origin": "created for public edition",
+      "reason": "New public-edition document: documentation/REVUE_PUBLIQUE.md"
+    }
+  ],
+  "notes": [
+    "Manifests are documentary; only descriptive metadata changed during review, not runtime permission fragments or scripts",
+    "Current inventory includes this file; its own digest omitted to avoid recursion",
+    "Source history remains private and untouched"
+  ]
+}

@@ -1,0 +1,48 @@
+# Adaptateur Antigravity — Workflow IA
+
+@[AI_WORKFLOW](~/.ai-workflow/AI_WORKFLOW.md)
+
+Tu es l’agent Antigravity principal et l’orchestrateur de la tâche courante. Ce fichier adapte le Workflow IA aux capacités et mécanismes propres à Antigravity ; il ne redéfinit pas les règles universelles.
+
+## Activation et périmètre
+`~/.gemini/GEMINI.md` et son inclusion native de `~/.ai-workflow/AI_WORKFLOW.md` sont déjà chargés au démarrage : **INTERDIT** de les relire via un outil uniquement pour récupérer des instructions déjà injectées.
+Lorsqu’un `PROJECT_CONTEXT.md` existe à la racine du dépôt, **OBLIGATION** de le lire exactement une fois comme contexte propre au projet ; son absence ne désactive pas le Workflow IA.
+**Déduplication.** Deux chemins ou mécanismes résolvant vers la même source constituent une seule source ; inclusion native, lien symbolique ou chemin équivalent ne justifie jamais une seconde lecture.
+
+## Orchestration Antigravity
+**Choix.** Tâche locale clairement bornée : le Principal peut l’exécuter. Déléguer seulement si le gain dépasse le coût (contexte, coordination, attente, contrôle, duplication, divergence). **Proportionnalité. OBLIGATION** de commencer par le chemin minimal suffisant pour répondre ou agir : question simple ou mécanisme déjà connu → réponse ou action directe avec les lectures strictement nécessaires. **INTERDIT** d’explorer configuration, documentation, implémentation, tests ou mécanismes voisins sans incertitude concrète pouvant changer la décision. Difficulté réelle → approfondir progressivement seulement le périmètre concerné.
+**Natif d’abord. OBLIGATION** de préférer le mécanisme natif Antigravity disponible et adapté dans la version courante. Mapping illustratif, non exclusif : exploration → `research` ; implémentation non triviale → `self` ; Review indépendante → nouveau `research` (statique) ou `self` (dynamique) ; validation préalable d’une mutation → règle de Plan du Workflow et Plan mode natif lorsqu’il est pertinent. Détail daté : `documentation/antigravity/`. **INTERDIT** de bloquer une capacité native future uniquement parce qu’elle n’existait pas lors de la requalification initiale. Évolution significative → requalification ciblée du mapping, pas du Workflow.
+**Exploration.** `research` lorsque l’incertitude d’emplacement, de mécanisme ou de preuve justifie un contexte séparé. Parallèle seulement pour des axes réellement indépendants. **OBLIGATION** d’attendre puis de synthétiser. **INTERDIT** de refaire la même exploration.
+**Implémentation.** `self` pour une unité non triviale déjà bornée lorsque la délégation apporte un gain réel. Le Principal donne le périmètre et le contexte nécessaire, puis contrôle. **INTERDIT** de refaire intégralement le travail délégué.
+**Parallélisme.** Plus petit fan-out utile, unités réellement indépendantes. **INTERDIT** de paralléliser artificiellement, ou de lancer plusieurs writers sur la même source de vérité sans stratégie explicite d’isolation et d’intégration.
+**Reprise.** Continuer un contexte seulement pour poursuivre son propre travail. **INTERDIT** de réutiliser ce contexte pour une Review, vérification adversariale ou seconde opinion : contexte neuf.
+**Custom. OBLIGATION** de vérifier d’abord si un natif courant couvre le besoin. Skill, hook ou agent personnalisé seulement si le besoin est récurrent, non couvert nativement, et que le gain durable dépasse le coût de maintenance.
+**Plan mode.** Une mutation reste soumise au Plan exigé par le Workflow. L’approbation humaine du plan satisfait cette validation, mais **INTERDIT** de la confondre avec l’autorisation d’outil Antigravity ou les barrières fonctionnelles du Workflow : les décisions humaines explicites et le profil de permissions restent applicables.
+**Sécurité native.** Profil `AUTO LARGE ASSUMÉ` : `toolPermission = always-proceed` et `allowNonWorkspaceAccess = true`. **OBLIGATION** de respecter les `Frontières sensibles non négociables` de `AI_WORKFLOW.md` même lorsqu'une action est techniquement AUTO. **INTERDIT** d'utiliser `--dangerously-skip-permissions`, de contourner un `DENY` ou d'accéder volontairement aux secrets. Les `DENY` techniques minimaux restent la barrière native. Détails versionnés dans `documentation/antigravity/` et `tests/antigravity/REQUALIFICATION.md`.
+
+## Modèles, reasoning et escalade
+**Principal.** Fonctionnement normal → Gemini 3.8 Flash Medium (`model = "Gemini 3.8 Flash (Medium)"` dans `settings.json`). Gemini 3.8 Flash High sur difficulté concrète motivée (ambiguïté technique persistante, diagnostic complexe, échecs répétés, décision architecturale sensible) ou pour la Review indépendante formelle. Escalade supérieure exceptionnelle motivée seulement si un niveau inférieur est réellement insuffisant. **INTERDIT** d'escalader vers High par confort, par simple longueur de session ou « pour être sûr ».
+**Seconde opinion.** Gemini 3.1 Pro High uniquement comme seconde opinion exceptionnelle, explicitement motivée ; jamais Reviewer par défaut ni étape automatique après Flash High. L’escalade motivée ne signifie pas un passage automatique à Pro ; la taille seule ne suffit pas. **AFFINITÉ ≠ RÔLE OBLIGATOIRE.**
+**Sous-agents.** En l'absence de clé native d'effort individuel par sous-agent, la politique s'applique par règle déclarative d'orchestration :
+- **`research` :** Medium par défaut (recherche, exploration, documentation, analyse statique, collecte de faits) ; High sur analyse complexe ; escalade supérieure motivée.
+- **`self` (implémentation) :** Medium sur plan clair et implémentation bornée ; High sur implémentation complexe ou ambiguë ; escalade supérieure motivée. La simple délégation à `self` ne justifie pas High.
+- **`self` (Review) :** Gemini 3.8 Flash High pour la Review indépendante formelle ; Flash Medium possible pour une micro-review ciblée/corrective si suffisant ; escalade motivée selon le besoin concret.
+**Économie de contexte. OBLIGATION** de réutiliser les preuves valides sur l'`ETAT`, d'éviter les lectures et commandes répétitives réinjectant les mêmes résultats, et d'approfondir proportionnellement au besoin réel.
+
+## Concurrence, sessions et contexte
+**Concurrence.** Capacité normale disponible → jusqu'à 3 sous-agents simultanés. **INTERDIT** de lancer 3 agents systématiquement : adapter strictement au nombre d'axes réellement indépendants (0 axe → 0 agent, 1 axe → 1 agent, 2 axes → 2 agents, 3 axes → jusqu'à 3 agents). Dépassement ponctuel au-delà de 3 possible uniquement si justifié (indépendance démontrée, quota raisonnable, absence de conflit d'écriture). Aucun plafond technique dur n'est imposé.
+**Sessions.** 1 grosse unité cohérente → 1 session (cycle typique : analyse → plan → implémentation → validation → Review → commit). Ne pas empiler automatiquement une nouvelle grosse unité indépendante dans une session chargée.
+**Contexte.** Lorsque le contexte s'allonge : utiliser la compaction native si elle suffit à poursuivre proprement ; sinon ouvrir une nouvelle session. Aucun seuil numérique arbitraire.
+
+## Review native
+Lorsqu’une Review indépendante exigée par le Workflow est prête :
+- **Review statique ou lecture native seule :** utiliser un nouveau subagent `research` (exploration, documentation, analyse statique et opérations read-only qu'il exécute nativement sans prompt).
+- **Review avec validation dynamique : OBLIGATION** d'utiliser un nouveau subagent `self` avec rôle explicite `Reviewer indépendant` dès lors que la Review requiert Bash, tests, build ou validation dynamique (le runtime de `research` n'héritant pas de l'autonomie Bash du Principal).
+- **Garanties du Reviewer `self` : OBLIGATION** d'utiliser un contexte neuf, distinct de l'implémenteur. Il est seul responsable du verdict et reste non-implémenteur pendant la Review. La possession technique d'outils d'écriture ne vaut pas autorisation fonctionnelle : **INTERDIT** au Reviewer `self` de modifier le code source reviewé.
+**INTERDIT** au Principal ou au contexte d’implémentation d’effectuer la Review lui-même. Indisponible ou comportement incompatible → `STOP`.
+`Artifact Review` est une validation humaine d’artefact ; **INTERDIT** de le confondre avec une Review IA indépendante. Correction → Principal si locale et triviale ; sinon mécanisme natif d’exécution adapté.
+
+## Communication Antigravity
+**OBLIGATION** pour le Principal et les subagents de répondre principalement en français et de me tutoyer.
+**Autorisations — OBLIGATION** lorsqu'une décision humaine est requise (point d'arrêt déclaratif `STOP` du Workflow ou invite éventuelle du runtime), d’indiquer brièvement en français son **but**, son **impact** et si l’action est **en lecture seule ou modificatrice**. **INTERDIT** d’inspecter préventivement permissions, configuration ou mécanismes internes pour prédire un comportement du runtime ; exécuter directement l’action légitime nécessaire ou marquer le point d'arrêt fonctionnel requis. Lorsqu’une alternative read-only manifestement équivalente et déjà connue suffit, la préférer sans recherche supplémentaire.
+**Terminal — OBLIGATION** de privilégier les mécanismes les moins puissants suffisants : `jq` plutôt que Python pour du JSON, `rg --files` plutôt que `find` pour un listing, commandes simples séparées plutôt que constructions shell complexes superflues. **ETAT Git. OBLIGATION** d’utiliser directement l’invocation qualifiée `python3 ~/.ai-workflow/outils/empreinte-git.py --initial` au début d’une unité significative et `python3 ~/.ai-workflow/outils/empreinte-git.py` pour un recalcul ; **INTERDIT** d’en chercher une autre invocation ou d’inspecter son implémentation avant exécution, sauf échec ou incohérence observée.

@@ -1,0 +1,335 @@
+{
+  "schema": 1,
+  "role": "Référence des choix volontairement retenus pour le Workflow Antigravity.",
+  "application_automatique": false,
+  "bootstrap": {
+    "source": "adaptateurs/antigravity/fichiers-installation/.gemini/GEMINI.md",
+    "installation": "~/.gemini/GEMINI.md",
+    "inclusion": "@[AI_WORKFLOW](~/.ai-workflow/AI_WORKFLOW.md)",
+    "source_universelle": "~/.ai-workflow/AI_WORKFLOW.md",
+    "chargement_initial_valide": true,
+    "read_outil_requis": false
+  },
+  "mecanismes_natifs_valides": {
+    "plan_mode": true,
+    "subagent_self": true,
+    "subagent_research": true,
+    "review_independant_via_research_ou_self": true,
+    "permissions_allow_ask_deny": true,
+    "permissions_heritees_par_subagents": "complete_pour_self_partielle_pour_research",
+    "sandbox_independant_des_permissions": true,
+    "capacite_native_ask_prioritaire_sur_autorisation": true,
+    "permissions_globales_allow": true,
+    "permissions_globales_ask": true,
+    "permissions_globales_deny": true,
+    "deny_prioritaire_sur_validation_plan": true,
+    "capacite_native_ask_interceptable_apres_plan": true,
+    "skills_globaux": true,
+    "statusline_command": true,
+    "read_file_grants": true,
+    "write_file_grants": true,
+    "read_url_grants": true,
+    "search_web_autonome": true,
+    "dev_workspace_confiance": true
+  },
+  "contrat_capacites_review": {
+    "reviewer_independant": true,
+    "reviewer_peut_lire": true,
+    "reviewer_peut_executer_validation": true,
+    "reviewer_peut_modifier_source": false,
+    "chemin_execution_preuve_si_indisponible": "principal",
+    "isolation_contextuelle": "subagent_ephemere",
+    "support_ETAT": true,
+    "support_review_ciblee": true,
+    "strategie_orchestration": "research pour analyse statique, self pour validation dynamique"
+  },
+  "orchestration_subagents": {
+    "principe": "Ce choix est une stratégie d'orchestration, pas une modification des permissions natives.",
+    "research": {
+      "contexte": "separe",
+      "role": "recherche_et_read_only",
+      "autonomie_lectures_natives": "complete",
+      "heritage_tool_permission_always_proceed": false,
+      "commandes_bash_unsandboxed": "declenchent_un_prompt_interactif_qui_expire_par_timeout_en_mode_asynchrone",
+      "usage": "exploration, documentation, analyse statique et operations read-only executees nativement sans prompt"
+    },
+    "self": {
+      "contexte": "separe",
+      "role": "miroir_complet_ou_reviewer_independant",
+      "heritage_configuration": "complete_du_principal",
+      "autonomie_operations_qualifiees": "identique_au_principal",
+      "usage_review": "adapte au role de Reviewer independant des lors qu'une validation dynamique (Bash, tests, build) est necessaire",
+      "garantie_review": "contexte neuf, non-implementeur, interdiction absolue de modifier les sources reviewees"
+    }
+  },
+  "contrat_capacites_autorisations": {
+    "projet_confiance_supporte": true,
+    "lecture_locale_autonome": true,
+    "lecture_externe_non_sensible_autonome": true,
+    "recherche_web_autonome": true,
+    "lecture_web_autonome": true,
+    "dev_local_autonome": true,
+    "tests_autonomes": true,
+    "build_autonome": true,
+    "git_lecture_autonome": true,
+    "git_mutation_controlee": false,
+    "dependances_controlees": false,
+    "reseau_externe_controle": false,
+    "ecriture_externe_controlee": false,
+    "secrets_proteges": "partiel : racines canoniques explicites pour outils natifs ; globs ** non établis comme effectifs ; aucune protection générale du terminal",
+    "destruction_bloquee": true,
+    "bypass_bloque": false,
+    "permissions_heritees_par_subagents": true,
+    "limites_connues": {
+      "execution_transitive_hors_moteur": true,
+      "portee_bac_a_sable": "sandbox_terminal_optionnel",
+      "bypass_non_verrouillable_techniquement": true
+    }
+  },
+  "politique_modeles_et_reasoning": {
+    "principal": {
+      "modele_normal": "Gemini 3.8 Flash (Medium)",
+      "cle_runtime_settings": "model",
+      "valeur_runtime_reconnue": "Gemini 3.8 Flash (Medium)",
+      "mecanisme_natif": "settings.json (clé model) ou drapeau CLI (--model / --effort)",
+      "difficile": "Gemini 3.8 Flash High (sur difficulté concrète motivée)",
+      "exceptionnel": "escalade supérieure seulement lorsqu'un niveau inférieur est réellement insuffisant",
+      "regle_escalade": "Medium reste le fonctionnement normal ; Flash High sur difficulté concrète et pour la Review indépendante formelle. Aucun passage à High par confort ou simple longueur de tâche. L’escalade motivée ne signifie pas un passage automatique à Pro."
+    },
+    "seconde_opinion": {
+      "modele": "Gemini 3.1 Pro High",
+      "regle": "Seconde opinion exceptionnelle explicitement motivée ; jamais Reviewer par défaut ni étape automatique après Flash High. La taille seule ne suffit pas. AFFINITÉ ≠ RÔLE OBLIGATOIRE."
+    },
+    "sous_agents": {
+      "mecanisme_natif_effort_individuel": false,
+      "mecanisme_natif_modele_individuel": "paramètre Model dans invoke_subagent (inherit par défaut, flash_lite, flash, pro)",
+      "statut_politique": "politique déclarative d'orchestration (aucun réglage natif d'effort fin par sous-agent)",
+      "research": {
+        "normal": "Medium",
+        "complexe": "High",
+        "exceptionnel": "escalade supérieure motivée",
+        "usage": "recherche, documentation, exploration, analyse statique, collecte de faits"
+      },
+      "self_implementation": {
+        "normal": "Medium (plan clair, implémentation bornée)",
+        "complexe": "High (implémentation complexe ou ambiguë)",
+        "exceptionnel": "escalade supérieure motivée",
+        "regle": "Le simple fait de déléguer à self ne justifie pas High."
+      },
+      "self_review": {
+        "simple": "Gemini 3.8 Flash Medium (micro-review ciblée/corrective si suffisant)",
+        "formelle": "Gemini 3.8 Flash High (Review indépendante formelle)",
+        "complexe": "Gemini 3.8 Flash High (difficulté concrète motivée)",
+        "exceptionnel": "seconde opinion Gemini 3.1 Pro High explicitement motivée, jamais automatique",
+        "garantie": "contexte neuf, indépendant de l'implémenteur, non-implémenteur pendant toute la Review, propriétaire du verdict"
+      }
+    },
+    "concurrence": {
+      "capacite_normale_disponible": 3,
+      "mecanisme_natif_limite": false,
+      "plafond_technique_dur": false,
+      "statut": "règle déclarative d'orchestration (aucun plafond dur configuré ni souhaitable)",
+      "politique_fan_out": {
+        "0_axe": 0,
+        "1_axe": 1,
+        "2_axes": 2,
+        "3_axes": 3,
+        "depassement_superieur_a_3": "ponctuel et justifié (tâches indépendantes, quota raisonnable, pas de conflit d'écriture)"
+      },
+      "principe": "La valeur 3 représente la capacité normale disponible, pas un objectif de fan-out systématique."
+    },
+    "sessions_et_contexte": {
+      "regle_session": "1 grosse unité cohérente = 1 session (cycle complet : analyse -> plan -> implémentation -> validation -> Review -> commit)",
+      "contexte_long": "compaction native si suffisante pour poursuivre proprement, sinon ouverture d'une nouvelle session",
+      "economie_contexte": "réutiliser les preuves valides sur l'ETAT, éviter les lectures massives répétitives, approfondir proportionnellement"
+    }
+  },
+  "etat_configuration_observe": {
+    "agent_mode": "accept-edits",
+    "tool_permission": "always-proceed",
+    "non_workspace_access": true,
+    "model": "Gemini 3.8 Flash (Medium)",
+    "statusline": "command",
+    "color_scheme": "terminal"
+  },
+  "non_geres_par_le_workflow": [
+    "authentification",
+    "sessions",
+    "brain",
+    "transcripts",
+    "scratch",
+    "caches",
+    "plugins tiers",
+    "MCP non explicitement configure"
+  ],
+  "requalification": {
+    "politique": "capability_first",
+    "derniere_version_testee": "1.2.6",
+    "principe": "La politique du Workflow est durable ; les mécanismes Antigravity sont requalifiés de manière ciblée par sous-système.",
+    "declencheurs": {
+      "permissions": "Requalifier sentinelles dev/read/deny si le moteur de permissions évolue.",
+      "subagents": "Requalifier l'orchestration si l'isolation ou la dotation des subagents change.",
+      "web": "Requalifier la lecture/recherche externe si les outils réseau natifs changent.",
+      "statusline": "Requalifier uniquement l'affichage en cas de modification du payload."
+    }
+  },
+  "regle": "Ne jamais remplacer automatiquement la configuration locale complète d'Antigravity avec ce fichier.",
+  "limites_connues": {
+    "execution_transitive": {
+      "principe": "Les filtres de permissions interceptent les appels directs de l'agent (run_command, view_file, write_to_file). Ils ne constituent pas une sandbox des processus descendants : les sous-processus lancés par une commande autorisée ne repassent pas par le moteur de permissions.",
+      "secrets_terminal": "Les règles deny sur read_file et write_file restreignent les outils natifs de l'agent mais ne constituent pas une sandbox des commandes terminal autorisées."
+    },
+    "articulation_modes": {
+      "agent_mode": "agentMode (accept-edits) contrôle l'autonomie d'édition native sans demande de confirmation UI répétitive.",
+      "tool_permission": "toolPermission (always-proceed) exécute les commandes et outils sans invite UI, hors règles DENY.",
+      "portee_fonctionnelle": "L'autonomie technique (absence de confirmation UI) ne constitue jamais une autorisation fonctionnelle implicite : toute action doit rester nécessaire à la tâche, dans le périmètre convenu, et conforme aux Frontières sensibles non négociables du Workflow."
+    },
+    "dangerously_skip_permissions": {
+      "version_observee": "1.2.6",
+      "comportement": "Le flag --dangerously-skip-permissions contourne les invites de permissions.",
+      "protection_native": false,
+      "decision_workflow": "Le flag est formellement INTERDIT par le Workflow. Antigravity 1.2.6 ne permettant pas de le bloquer techniquement de façon étanche, son interdiction repose sur la règle déclarative absolue du Workflow sans prétention de verrouillage technique natif."
+    },
+    "protection_secrets_publique": "Les globs ** ne sont pas évalués dans la qualification 1.2.6. Les fichiers .env et clés du workspace ne sont pas techniquement protégés par ces motifs. Les racines absolues canoniques explicites sont couvertes par préfixe uniquement pour les outils natifs. always-proceed et accès hors workspace restent larges. Aucun filtre de permission n’est modifié ici."
+  },
+  "politique_permissions": {
+    "installation": "~/.gemini/antigravity-cli/settings.json",
+    "mode": "always-proceed",
+    "profil": "auto-large-assumé",
+    "projets_externes_session": "agy --add-dir <chemin>",
+    "strategie": {
+      "allow": "Vide sous always-proceed : toute commande ou action non bloquée par DENY s'exécute automatiquement sans confirmation UI.",
+      "ask": "Vide : suppression de la liste ASK routinière au profit des règles comportementales du Workflow.",
+      "ask_runtime_actif": false,
+      "decisions_humaines": "Points d'arrêt déclaratifs STOP du Workflow (aucune invite ASK runtime requise dans le profil actif).",
+      "deny": "DENY technique minimal : destructions irréversibles, Git destructif, élévation de privilèges, altération système critique, interpréteurs arbitraires inline et protection symétrique lecture/écriture native sur les secrets connus."
+    },
+    "portabilite": {
+      "source": "adaptateurs/antigravity/permissions.json avec chemins portables '~'.",
+      "installation": "Résolution dynamique de '~' vers le HOME absolu lors de la fusion dans settings.json."
+    },
+    "droits_etendus_surs": {
+      "read_file_et_write_file_deny": [
+        "~/.ssh",
+        "~/.aws",
+        "~/.gnupg",
+        "~/Library/Keychains",
+        "~/.bash_history",
+        "~/.zsh_history",
+        "~/.azure",
+        "~/.config/gcloud",
+        "~/.config/gh",
+        "~/.gemini/jetski-standalone-oauth-token",
+        "~/.kube",
+        "~/.netrc",
+        "~/.password-store",
+        "~/Library/Application Support/Firefox",
+        "~/Library/Application Support/Google/Chrome"
+      ],
+      "non_workspace_access_global": true,
+      "tool_permission_global": "always-proceed"
+    }
+  },
+  "sandbox": {
+    "disponible": true,
+    "activation": "agy --sandbox",
+    "par_defaut": false,
+    "raison": "Le sandbox terminal d'Antigravity CLI 1.2.6 bloque les écritures Bash même à l'intérieur du workspace.",
+    "comportement_requalifie": {
+      "lecture_terminal_workspace": true,
+      "ecriture_terminal_workspace": false,
+      "ecriture_terminal_hors_workspace": false
+    },
+    "usage_recommande": [
+      "audit en lecture seule",
+      "exploration",
+      "review indépendante",
+      "sessions volontairement non mutantes"
+    ],
+    "limite": "Le sandbox terminal ne remplace pas les contrôles des outils Edit/Write."
+  },
+  "non_workspace_access": {
+    "actif": true,
+    "reglage": "Non-Workspace Access = On (allowNonWorkspaceAccess = true)",
+    "cle_runtime": "allowNonWorkspaceAccess",
+    "portee": [
+      "Read",
+      "Edit",
+      "Write",
+      "exploration et recherche de fichiers"
+    ],
+    "terminal_concerne": false,
+    "comportement_requalifie_1_2_6": {
+      "acces_fichier_hors_workspace": "autonome sans invite pour les opérations de fichiers natives",
+      "deny_absolu": true
+    },
+    "decision_workflow": "Profil historique AUTO LARGE ASSUMÉ ; protection native partielle des seules racines explicites, hors terminal. Ne pas confondre avec un confinement ni une protection universelle des secrets."
+  },
+  "compatibilite": {
+    "derniere_version_testee": "1.2.6",
+    "statut": "requalification comportementale validée pour 1.2.6",
+    "principe": "Les règles du Workflow sont durables ; les mécanismes Antigravity sont requalifiés par version.",
+    "comportement_inconnu": "aucun comportement bloquant connu pour le périmètre requalifié ; limites connues documentées dans tests/antigravity/REQUALIFICATION.md",
+    "declencheurs_requalification": [
+      "changement de Non-Workspace Access",
+      "changement de version Antigravity CLI",
+      "changement des actions read_file ou write_file",
+      "changement des subagents",
+      "changement du chargement des Rules",
+      "changement du chargement des Skills",
+      "changement du comportement des hooks JSON",
+      "changement du format de configuration",
+      "changement du format ou du payload de statusLine",
+      "changement du moteur de permissions",
+      "changement du sandbox"
+    ]
+  },
+  "principes_durables": {
+    "native_first": true,
+    "adaptateur_minimal": true,
+    "aucune_duplication_des_regles_universelles": true,
+    "commande_inconnue": "AUTO (always-proceed) encadré par les règles déclaratives du Workflow",
+    "mutation_sensible": "encadrée par les Frontières sensibles non négociables",
+    "operation_destructive_interdite": "DENY",
+    "configuration_locale_complete": "ne jamais remplacer automatiquement"
+  },
+  "evolution": {
+    "ne_pas_dependre_des_details_internes": true,
+    "preferer_comportement_aux_implementations": true,
+    "nouvelles_fonctions": "non autorisées automatiquement avant requalification",
+    "fonctions_disparues": "retirer seulement après constat et requalification",
+    "strategie": "tester quelques comportements sentinelles plutôt que réauditer entièrement l'outil"
+  },
+  "skills": {
+    "preparer_commit": "~/.gemini/antigravity-cli/skills/preparer-commit/SKILL.md",
+    "cloturer_branche": "~/.gemini/antigravity-cli/skills/cloturer-branche/SKILL.md",
+    "chargement_sans_erreur_de_parsing": true
+  },
+  "statusline": {
+    "source": "adaptateurs/antigravity/fichiers-installation/.gemini/antigravity-cli/statusline.sh",
+    "installation": "~/.gemini/antigravity-cli/statusline.sh",
+    "type": "command",
+    "stack_with_default": false,
+    "affiche": [
+      "modele",
+      "contexte utilise",
+      "quota 5 h",
+      "quota hebdomadaire",
+      "branche Git",
+      "workspace"
+    ],
+    "seuils_contexte": {
+      "vert": "0-39 %",
+      "jaune": "40-69 %",
+      "rouge": "70-100 %"
+    }
+  },
+  "hooks_json": {
+    "version_observee": "1.2.6",
+    "decouverte_et_chargement": true,
+    "execution_runtime_standard_observee": false,
+    "notification_custom_retenue": false,
+    "decision_workflow": "Ne conserver aucun hook JSON inactif tant que son exécution runtime standard n'est pas requalifiée."
+  },
+  "portee_edition_publique": "Manifeste documentaire historique, pas un réglage complet à installer. Les états qualifiés/observés se rapportent aux versions et à la machine des campagnes historiques ; aucune qualification actuelle implicite."
+}

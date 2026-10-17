@@ -1,0 +1,30 @@
+# Secrets and local settings
+.env
+.env.*
+!.env.example
+!.env.sample
+secrets/
+auth.json
+credentials.json
+*.pem
+*.key
+.claude/settings.local.json
+.codex/config.local.toml
+# Private runtime data, never reusable adapter sources
+logs/
+sessions/
+conversations/
+exports/
+*.log
+*.jsonl
+backups/
+*.backup*
+*.bak
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.DS_Store
+.tmp/
+tmp/
+*.tmp

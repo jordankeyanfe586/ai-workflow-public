@@ -1,0 +1,229 @@
+{
+  "schema": 1,
+  "role": "Référence des réglages settings.json volontairement choisis pour le Workflow Claude Code.",
+  "statut": "installé et qualifié sur le périmètre requalifié pour Claude Code 2.1.280 (ExitPlanMode non requalifié ; notifications avancées partielles/reportées ; limites sandbox documentées)",
+  "application_automatique": false,
+  "installation_cible": "~/.claude/settings.json (fichier possédé conjointement avec Claude Code)",
+  "regle": "Ne jamais remplacer settings.json avec ce fichier. Fusionner uniquement les clés de fragment_settings ; conserver les autres clés utilisateur (theme, modelSettings, etc.) sauf décision explicite.",
+  "fragment_settings": {
+    "model": "opus",
+    "effortLevel": "medium",
+    "language": "French",
+    "autoMemoryEnabled": false,
+    "includeGitInstructions": false,
+    "permissions": {
+      "defaultMode": "auto",
+      "disableBypassPermissionsMode": "disable",
+      "ask": [
+        "Bash(git add)",
+        "Bash(git add *)",
+        "Bash(git commit)",
+        "Bash(git commit *)",
+        "Bash(git stage)",
+        "Bash(git stage *)",
+        "Bash(git push)",
+        "Bash(git push *)",
+        "Bash(git merge)",
+        "Bash(git merge *)",
+        "Bash(git rebase)",
+        "Bash(git rebase *)",
+        "Bash(git pull)",
+        "Bash(git pull *)",
+        "Bash(git branch -d *)",
+        "Bash(git branch --delete *)",
+        "Bash(git branch * -d *)",
+        "Bash(git branch * -d)",
+        "Bash(git branch * --delete *)",
+        "Bash(git branch * --delete)"
+      ],
+      "deny": [
+        "Bash(git reset --hard)",
+        "Bash(git reset --hard *)",
+        "Bash(git reset * --hard)",
+        "Bash(git reset * --hard *)",
+        "Bash(git clean -f*)",
+        "Bash(git clean -df*)",
+        "Bash(git clean -xf*)",
+        "Bash(git clean -dxf*)",
+        "Bash(git clean --force*)",
+        "Bash(git clean * -f*)",
+        "Bash(git branch -D *)",
+        "Bash(git branch * -D)",
+        "Bash(git branch * -D *)",
+        "Bash(git branch --delete --force *)",
+        "Bash(git branch --force --delete *)",
+        "Bash(git branch -d -f *)",
+        "Bash(git branch -df *)",
+        "Bash(git push --force*)",
+        "Bash(git push -f*)",
+        "Bash(git push * --force*)",
+        "Bash(git push * -f)",
+        "Bash(git push * -f *)",
+        "Bash(git worktree remove --force *)",
+        "Bash(git worktree remove -f *)",
+        "Bash(git worktree remove * --force)",
+        "Bash(git worktree remove * -f)",
+        "Read(**/.env)",
+        "Read(**/.env.*)",
+        "Read(**/secrets/**)",
+        "Read(**/*.pem)",
+        "Read(**/*.key)",
+        "Read(**/*id_rsa*)",
+        "Read(**/*id_ed25519*)",
+        "Read(~/.ssh/**)",
+        "Read(~/.aws/**)",
+        "Read(~/.gnupg/**)",
+        "Read(~/Library/Keychains/**)",
+        "Read(~/.config/gh/**)",
+        "Read(~/.netrc)",
+        "Read(~/.codex/auth.json)",
+        "Read(~/.grok/auth.json)",
+        "Read(~/.gemini/jetski-standalone-oauth-token)",
+        "Edit(**/.env)",
+        "Edit(**/.env.*)",
+        "Edit(**/secrets/**)",
+        "Edit(**/*.pem)",
+        "Edit(**/*.key)",
+        "Edit(**/*id_rsa*)",
+        "Edit(**/*id_ed25519*)",
+        "Edit(~/.ssh/**)",
+        "Edit(~/.aws/**)",
+        "Edit(~/.gnupg/**)",
+        "Edit(~/Library/Keychains/**)",
+        "Edit(~/.config/gh/**)",
+        "Edit(~/.netrc)",
+        "Edit(~/.codex/auth.json)",
+        "Edit(~/.grok/auth.json)",
+        "Edit(~/.gemini/jetski-standalone-oauth-token)"
+      ]
+    },
+    "sandbox": {
+      "enabled": true,
+      "failIfUnavailable": true,
+      "autoAllowBashIfSandboxed": true,
+      "allowUnsandboxedCommands": false
+    },
+    "hooks": {
+      "PreToolUse": [
+        {
+          "matcher": "Bash",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "/usr/bin/python3 -B \"$HOME/.claude/hooks/barriere-git.py\""
+            }
+          ]
+        }
+      ],
+      "SessionStart": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "/usr/bin/python3 -B \"$HOME/.ai-workflow/outils/empreinte-git.py\" --initial || true"
+            }
+          ]
+        }
+      ],
+      "Notification": [
+        {
+          "matcher": "permission_prompt",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "/usr/bin/python3 -B \"$HOME/.claude/hooks/notification.py\""
+            }
+          ]
+        },
+        {
+          "matcher": "idle_prompt",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "/usr/bin/python3 -B \"$HOME/.claude/hooks/notification.py\""
+            }
+          ]
+        }
+      ]
+    },
+    "statusLine": {
+      "type": "command",
+      "command": "bash ~/.claude/statusline-command.sh"
+    }
+  },
+  "cles_retirees_a_l_installation": {
+    "hooks.PreToolUse (pre-tool-use.py, allow-workspace-read.py)": "remplacés par permissions.ask/deny natifs, mode auto et sandbox",
+    "hooks.ConfigChange (config-change.py)": "a réellement produit ~/.claude/logs/config-changes.log (journal conservé) ; retiré car le risque est couvert par la protection native d'auto-modification et le sandbox",
+    "model opus[1m]": "fenêtre 1M réservée aux unités qui la justifient (--model 'opus[1m]' ponctuel)",
+    "effortLevel high": "effort normal medium ; escalade motivée",
+    "agents/ai-agent.md": "routage systématique retiré ; sous-agents natifs",
+    "agents/ai-reviewer.md historique": "remplacé par la version modernisée maintenue dans fichiers-installation/.claude/agents/"
+  },
+  "non_geres_par_le_workflow": [
+    "theme",
+    "modelSettings",
+    "authentification",
+    "sessions",
+    "projects",
+    "history",
+    "caches",
+    "plugins et marketplaces",
+    "~/.claude.json",
+    "fichiers *.backup*"
+  ],
+  "politique_modeles": {
+    "principal": "Opus 5.5 standard (alias opus), effort medium",
+    "escalade": "medium par défaut → high sur difficulté concrète motivée (non automatisable en 2.1.280 : signalement non bloquant, poursuite en medium) ; opus[1m] seulement si l'unité l'exige",
+    "sous_agents": "paramètre model explicite à l'appel, effort hérité : Explore et general-purpose sonnet → opus (escalade automatique sur signal concret), Plan opus, ai-reviewer opus (frontmatter) ; escalade automatique d'effort high indisponible en 2.1.280",
+    "concurrence": "proportionnée à la tâche, sans plafond Workflow fixe : le Principal choisit le nombre minimal suffisant de sous-agents selon les axes réellement indépendants ; aucun parallélisme artificiel ; limites natives, quota et contexte respectés (aucun plafond natif atteint à 6 agents en 2.1.280)"
+  },
+  "contrat_capacites_autorisations": {
+    "projet_confiance_supporte": true,
+    "lecture_locale_autonome": true,
+    "lecture_externe_non_sensible_autonome": true,
+    "recherche_web_autonome": true,
+    "lecture_web_autonome": true,
+    "dev_local_autonome": true,
+    "tests_autonomes": true,
+    "build_autonome": true,
+    "git_lecture_autonome": true,
+    "git_mutation_controlee": true,
+    "dependances_controlees": true,
+    "reseau_externe_controle": true,
+    "ecriture_externe_controlee": true,
+    "secrets_proteges": "partiel : Read/Edit et formes Bash reconnues ; sous-processus non établis ; aucune protection universelle",
+    "destruction_bloquee": true,
+    "bypass_bloque": true,
+    "permissions_heritees_par_subagents": true,
+    "limites_connues": {
+      "execution_transitive_hors_moteur": true,
+      "portee_bac_a_sable": "Seatbelt macOS : écritures limitées au workspace et aux temporaires ; réseau via proxy filtrant",
+      "detail": "documentation/claude/MECANISMES.md et tests/claude/REQUALIFICATION.md"
+    }
+  },
+  "contrat_capacites_review": {
+    "reviewer_dedie": "agent personnalisé ai-reviewer (tools: Read, Bash ; aucun Edit/Write), non systématique",
+    "reviewer_independant": "externe (Antigravity ; Antigravity + Codex si risque élevé) lorsque Claude est auteur ; ai-reviewer possible comme Reviewer externe lorsque Codex ou Antigravity est auteur",
+    "precontrole_interne": "ai-reviewer ou /code-review sans --fix : Review supplémentaire ou diagnostic, jamais preuve finale d'indépendance lorsque Claude est auteur",
+    "isolation_contextuelle": "subagent_ephemere",
+    "reviewer_peut_lire": true,
+    "reviewer_peut_executer_validation": "true (Bash : validations sans écriture de source ; caches ignorés tolérés)",
+    "reviewer_peut_modifier_source": false,
+    "garantie_non_modification": "structurelle pour Edit/Write ; déclarative pour Bash, vérifiée par ETAT initial = ETAT final sur le périmètre pertinent (artefacts générés de tests/build tolérés et signalés)",
+    "chemin_execution_preuve_si_indisponible": "principal",
+    "lancement_automatique_reviewers_externes": false,
+    "support_ETAT": true,
+    "support_review_ciblee": true
+  },
+  "requalification": {
+    "version_qualifiee": "2.1.280",
+    "declencheurs": [
+      "changement du moteur de permissions ou du mode auto",
+      "changement du sandbox",
+      "changement des sous-agents natifs ou de leur héritage de permissions",
+      "changement du format des hooks ou du payload statusLine",
+      "changement du chargement de CLAUDE.md ou des Skills"
+    ]
+  },
+  "portee_edition_publique": "Manifeste documentaire historique, pas un réglage complet à installer. Les états qualifiés/observés se rapportent aux versions et à la machine des campagnes historiques ; aucune qualification actuelle implicite."
+}

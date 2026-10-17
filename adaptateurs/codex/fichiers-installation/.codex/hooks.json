@@ -1,0 +1,16 @@
+{
+  "description": "Hooks minimaux du Workflow IA.",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 \"$HOME/.codex/hooks/notification.py\"",
+            "timeout": 3
+          }
+        ]
+      }
+    ]
+  }
+}
